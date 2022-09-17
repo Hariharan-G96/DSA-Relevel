@@ -17,6 +17,8 @@ const binarySearch = (arr, target) => {
 
 console.log(binarySearch([10, 20, 30, 50, 60, 80, 110, 130, 140, 170], 110));
 
+
+
 /* Basic Binary Search - Using Recursion */
 
 function binarySearchUsingRecursion(arr, left, right, target){
@@ -37,6 +39,66 @@ function binarySearchUsingRecursion(arr, left, right, target){
 
 let arr = [10, 20, 30, 50, 60, 80, 110, 130, 140, 170];
 console.log(binarySearchUsingRecursion(arr, 0, arr.length - 1, 110));
+
+
+
+/* First and Last position of an element in a sorted array - Class Approach */
+
+var searchRange = (arr, target) => {
+    const firstIndex = searchFirst(arr, target);
+    const lastIndex = searchLast(arr, target);
+
+    return [firstIndex, lastIndex];
+
+    function searchFirst(arr, target){
+        let left = -1, right = arr.length;
+
+        while(left + 1 < right){
+            let mid = Math.floor((right+left)/2);
+
+            if(arr[mid] >= target){
+                right = mid;
+            }
+            else{
+                left = mid;
+            }
+        }
+
+        if(arr[right] === target){
+            return right;
+        }
+        else{
+            return -1;
+        }
+    }
+
+    function searchLast(arr, target){
+        let left = -1, right = arr.length;
+
+        while(left + 1 < right){
+            let mid = Math.floor((right+left)/2);
+
+            if(arr[mid] > target){
+                right = mid;
+            }
+            else{
+                left = mid;
+            }
+        }
+
+        if(arr[right - 1] === target){
+            return right - 1;
+        }
+        else{
+            return -1;
+        }
+    }
+
+};
+
+console.log(searchRange([5,7,7,8,8,10], 8));
+
+
 
 /* First and Last position of an element in a sorted array */
 
