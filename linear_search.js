@@ -40,3 +40,19 @@ function linearSearch(arr, target, count){
 }
 
 console.log(linearSearch([4,5,3,2,6,9], 3, 0));
+
+/* Find the number of rotations in Rotated Sorted array */
+
+const countRotations = (arr) => {
+    let min = arr[0], min_index = 0;
+
+    for(let i = 0; i < arr.length; i++){
+        if(min > arr[i]){
+            min = arr[i];
+            min_index = i;
+        }
+    }
+    return min_index;
+};
+
+console.log(countRotations([15, 18, 2, 3, 6, 12]));

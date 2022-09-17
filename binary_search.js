@@ -17,8 +17,6 @@ const binarySearch = (arr, target) => {
 
 console.log(binarySearch([10, 20, 30, 50, 60, 80, 110, 130, 140, 170], 110));
 
-
-
 /* Basic Binary Search - Using Recursion */
 
 function binarySearchUsingRecursion(arr, left, right, target){
@@ -39,8 +37,6 @@ function binarySearchUsingRecursion(arr, left, right, target){
 
 let arr = [10, 20, 30, 50, 60, 80, 110, 130, 140, 170];
 console.log(binarySearchUsingRecursion(arr, 0, arr.length - 1, 110));
-
-
 
 /* First and Last position of an element in a sorted array - Class Approach */
 
@@ -98,8 +94,6 @@ var searchRange = (arr, target) => {
 
 console.log(searchRange([5,7,7,8,8,10], 8));
 
-
-
 /* First and Last position of an element in a sorted array */
 
 var searchRange = function(nums, target) {
@@ -142,3 +136,31 @@ var searchRange = function(nums, target) {
 let nums = [0,0,1,2,2], target = 2;
 
 console.log(searchRange(nums, target));
+
+/* Find the square root of a number up to given precision using the binary search algorithm */
+
+const squareRootNumber = (number, precision) => {
+    let start = 0, end = number, ans = 0.0;
+
+    while(start <= end){
+        let mid = start + (end - start)/2;
+
+        if(mid * mid === number){
+            ans = mid;
+            break;
+        }
+
+        else if(mid * mid < number){
+            start = mid + 1;
+            ans = mid;
+        }
+
+        else{
+            end = mid - 1;
+        }
+    }
+
+    return ans.toPrecision(precision);
+};
+
+console.log(squareRootNumber(25, 3));
