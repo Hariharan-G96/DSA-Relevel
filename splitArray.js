@@ -1,6 +1,6 @@
 function verify(mid, array, n, k){
     let sum = 0;
-    let count = 0;
+    let sub_array_count = 0;
 
     for(let i = 0; i < n; i++){
         if(array[i] > mid){
@@ -10,13 +10,13 @@ function verify(mid, array, n, k){
         sum += array[i];
 
         if(sum > mid){
-            count++;
+            sub_array_count++;
             sum = array[i];
         }
     }
-    count++;
+    sub_array_count++;
 
-    if(count <= k) return true;
+    if(sub_array_count <= k) return true;
 
     return false;
 }

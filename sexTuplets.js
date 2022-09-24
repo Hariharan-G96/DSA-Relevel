@@ -35,7 +35,7 @@ const findSexTuplets = (arr, n) => {
     let RHS = new Array(n * n * n);
 
     for(let i = 0; i < n; i++){
-        if(arr[i] != 0){
+        if(arr[i] != 0){ // constraint given
             for(let j = 0; j < n; j++){
                 for(let k = 0; k < n; k++){
                     RHS[index++] = arr[i] * (arr[j] + arr[k]);
