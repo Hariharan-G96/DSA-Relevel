@@ -78,7 +78,7 @@ class SingleLL{
     }
 
     getElementAtIndex(pos){
-        if(pos < 0 || pos > this.length){
+        if(pos < 0 || pos >= this.length){
             return "Value unavailable for the given index!";
         }
 
