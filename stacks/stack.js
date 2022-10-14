@@ -73,4 +73,60 @@ console.log(stack.peak());
 stack.insertAtBottom(0);
 stack.print();
 stack.reverse();
+console.log("===> After Reversing");
 console.log(stack);
+
+/* Sorting the Stack */
+
+const sortStack = (s) => {
+    if(!s.isEmpty()){
+        let temp = s.peak();
+        s.pop();
+        sortStack(s);
+        sortInInsertedManner(s,temp);
+    }
+    return;
+}
+
+const sortInInsertedManner = (s,x) => {
+    if(s.isEmpty() || s.peak() < x){
+        s.push(x);
+        return;
+    }
+    else{
+        let temp = s.peak();
+        s.pop();
+        sortInInsertedManner(s,x);
+        s.push(temp);
+        return;
+    }
+}
+
+// sortStack(stack);
+// console.log("===> After Sorting");
+// console.log(stack);
+
+/* Finding Minimum and Maximum Element in Stack */
+
+let min = stack.peak();
+let max = stack.peak();
+const minMax = (stack) => {
+    if(!stack.isEmpty()){
+        let temp = stack.peak();
+        stack.pop();
+        minMax(stack);
+        if(temp < min){
+            min = temp;
+        }
+        else if(temp > max){
+            max = temp;
+        }
+        stack.push(temp);
+    }
+    return;
+}
+
+minMax(stack);
+
+console.log(min, max);
+stack.print();
