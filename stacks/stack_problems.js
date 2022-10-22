@@ -9,7 +9,7 @@ var sumSubarrayMins = function(arr) {
     let nle = NLE(arr);
     let sum = 0;
     for(let i = 0; i < n; i++){
-        sum = (sum + arr[i] * ((i - ple[i]) * (nle[i] - i))) % M;
+        sum = (sum + arr[i] * ((i - ple[i]) * (nle[i] - i))) % M; // Formula used
     }
     return sum;
 };
@@ -141,3 +141,5 @@ function rightSmallest(heights){
 
 let heights = [2,1,5,6,2,3];
 console.log(largestRectangleArea(heights));
+
+/* Output: 10 */
