@@ -336,3 +336,57 @@ function getMaxStamina(n, heights){
 console.log(getMaxStamina(5, [1,2,3,8,6]));
 
 /* Output: 11 */
+
+/* Assignment Problems
+
+1. Reversing a Stack
+
+Given a stack S, you need to reverse the eCement in the stack using another empty stack S’
+Input: 2,4,5,7,8
+Output: 8,7,5,4,2 */
+
+function shiftElement(S, S_, n){
+    for(let i = 0; i < n; i++){
+        let temp = S[S.length - 1];
+        S.pop();
+        S_.push(temp);
+    }
+}
+
+function reverseElement(S, n){
+    var S_ = [];
+
+    for(let i = 0; i < n; i++){
+        let elem = S[S.length - 1];
+        S.pop();
+        shiftElement(S, S_, n - i - 1);
+        S.push(elem);
+        shiftElement(S_, S, n - i - 1);
+    }
+}
+
+let S = [1, 2, 3, 4, 5];
+reverseElement(S, S.length);
+console.log(S);
+
+/* Output: [ 5, 4, 3, 2, 1 ] */
+
+/* Given a stack, find the max and minimum value stored inside it */
+
+function maxMin(s){
+    let k = [...s];
+    let max = k[k.length - 1];
+    let min = k[k.length - 1];
+
+    while(k.length > 0){
+        max = Math.max(k[k.length - 1], max);
+        min = Math.min(k[k.length - 1], min);
+        k.pop();
+    }
+    return {max: max, min: min};
+}
+
+let s = [1,2,4,8,5];
+console.log(maxMin(s));
+
+/* Output: { max: 8, min: 1 } */
