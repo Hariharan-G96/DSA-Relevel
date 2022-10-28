@@ -1,3 +1,6 @@
+/* Gas Station
+https://leetcode.com/problems/gas-station/ */
+
 var canCompleteCircuit = function(gas, cost) {
     let startPoint = 0;
     let requiredFuel = 0;
@@ -22,3 +25,5 @@ var canCompleteCircuit = function(gas, cost) {
 
 let gas = [1,2,3,4,5], cost = [3,4,5,1,2];
 console.log(canCompleteCircuit(gas, cost));
+
+/* Output: 3 */
