@@ -390,3 +390,168 @@ let s = [1,2,4,8,5];
 console.log(maxMin(s));
 
 /* Output: { max: 8, min: 1 } */
+
+/* Practice Problems
+
+Daily Temperatures
+
+https://leetcode.com/problems/daily-temperatures/submissions/ */
+
+var dailyTemperatures = function(temperatures) {
+    if(temperatures.length === 0) return;
+    if(temperatures.length === 1) return [0];
+    
+    let n = temperatures.length;
+    let ans = [0];
+    let stack = [n-1];
+    
+    for(let i = n-2; i >= 0; i--){
+        while(stack.length > 0 && temperatures[stack[stack.length - 1]] <= temperatures[i]){
+            stack.pop();
+        }
+        
+        if(stack.length === 0){
+            ans.push(0);
+        }
+        else{
+            ans.push(stack[stack.length - 1] - i);
+        }
+        stack.push(i);
+    }
+    return ans.reverse();
+};
+
+let temperatures = [73,74,75,71,69,72,76,73];
+console.log(dailyTemperatures(temperatures));
+
+/* Output: [1,1,4,2,1,1,0,0] */
+
+/* Sum of Subarray Ranges
+
+https://leetcode.com/problems/sum-of-subarray-ranges/ */
+
+var subArrayRanges = function(nums) {
+    let n = nums.length;
+    
+    let ple = PLE(nums);
+    let nle = NLE(nums);
+    let pge = PGE(nums);
+    let nge = NGE(nums);
+    
+    let smallest = 0;
+    let largest = 0;
+    
+    for(let i = 0; i < n; i++){
+        smallest = (smallest + nums[i] * ((i - ple[i]) * (nle[i] - i))); // Formula used
+    }
+    
+    for(let i = 0; i < n; i++){
+        largest = (largest + nums[i] * ((i - pge[i]) * (nge[i] - i))); // Formula used
+    }
+    
+    return largest - smallest;
+};
+
+function PLE(nums){
+    let stack = [0];
+    let ans = [-1];
+    
+      for(let i = 1; i < nums.length; i++){
+          if(nums[stack[stack.length-1]] < nums[i]){
+              ans.push(stack[stack.length-1]);
+          }
+          else if(nums[stack[stack.length-1]] >= nums[i]){
+              while(stack.length > 0 && nums[stack[stack.length-1]] >= nums[i]){
+                  stack.pop();
+              }
+              if(stack.length === 0){
+                  ans.push(-1);
+              }
+              else if(nums[stack[stack.length-1]] < nums[i]){
+                  ans.push(stack[stack.length-1]);
+              }
+          }
+          stack.push(i);
+      }
+      return ans;
+  };
+  
+  function NLE(nums){
+    let n = nums.length; 
+    let stack = [n-1];
+    let ans = [n];
+    
+      for(let i = n-2; i >=0 ; i--){
+          if(nums[stack[stack.length-1]] < nums[i]){
+              ans.push(stack[stack.length-1]);
+          }
+          else if(nums[stack[stack.length-1]] >= nums[i]){
+              while(stack.length > 0 && nums[stack[stack.length-1]] > nums[i]){
+                  stack.pop();
+              }
+              if(stack.length === 0){
+                  ans.push(n);
+              }
+              else if(nums[stack[stack.length-1]] <= nums[i]){
+                  ans.push(stack[stack.length-1]);
+              }
+          }
+          stack.push(i);
+      }
+      return ans.reverse();
+  };
+  
+  function PGE(nums){
+    let stack = [0];
+    let ans = [-1];
+    
+      for(let i = 1; i < nums.length; i++){
+          if(nums[stack[stack.length-1]] > nums[i]){
+              ans.push(stack[stack.length-1]);
+          }
+          else if(nums[stack[stack.length-1]] <= nums[i]){
+              while(stack.length > 0 && nums[stack[stack.length-1]] <= nums[i]){
+                  stack.pop();
+              }
+              if(stack.length === 0){
+                  ans.push(-1);
+              }
+              else if(nums[stack[stack.length-1]] > nums[i]){
+                  ans.push(stack[stack.length-1]);
+              }
+          }
+          stack.push(i);
+      }
+      return ans;
+  };
+  
+  function NGE(nums){
+    let n = nums.length; 
+    let stack = [n-1];
+    let ans = [n];
+    
+      for(let i = n-2; i >=0 ; i--){
+          if(nums[stack[stack.length-1]] > nums[i]){
+              ans.push(stack[stack.length-1]);
+          }
+          else if(nums[stack[stack.length-1]] <= nums[i]){
+              while(stack.length > 0 && nums[stack[stack.length-1]] < nums[i]){
+                  stack.pop();
+              }
+              if(stack.length === 0){
+                  ans.push(n);
+              }
+              else if(nums[stack[stack.length-1]] >= nums[i]){
+                  ans.push(stack[stack.length-1]);
+              }
+          }
+          stack.push(i);
+      }
+      return ans.reverse();
+  };
+
+let nums = [1,2,3];
+
+console.log(subArrayRanges(nums));
+
+/* Output: 4 */

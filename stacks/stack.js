@@ -48,6 +48,7 @@ class Stack{
             this.pop();
             this.insertAtBottom(value);
             this.push(temp);
+            return;
         }
     }
 
