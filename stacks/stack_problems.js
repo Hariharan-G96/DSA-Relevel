@@ -221,6 +221,10 @@ console.log(removeKdigits(num, k));
 /* Valid Parantheses */
 
 function validateParantheses(s){
+    if(s.length % 2 !== 0){
+        return false;
+    }
+    
     let openingBrackets = [];
 
     for(let idx = 0; idx < s.length; idx++){
